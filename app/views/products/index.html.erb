@@ -1,11 +1,14 @@
-<% product = Product.where(:name => "Coffee").first %>
-<p>
-  Product Name: "<%= product.name %>" costs $<%= product.price %>
-</p>
-<p>
-  The seller for this product is named '<%= product.user.name %>'
-</p>
+<% lots_of_products = Product.includes(:user).all %>
 
-<p>
-	Total Products: <%= total_count = Product.count %>
-</p>
+<ul>
+	<% lots_of_products.each do |product| %>
+		
+	<li>
+		Product name: <strong>"<%= product.name %>"</strong>, Product price: <strong>"£<%= product.price %>"</strong>
+
+		Sold by: <strong>"<%= product.user.name %>"</strong>
+	</li>
+
+
+	<% end %>
+</ul>
